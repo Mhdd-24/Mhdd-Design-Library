@@ -1,0 +1,13 @@
+<div (click)="handleChipClick(label(), $event)" [class]="[chipProperties().variant,
+  chipProperties().styles].join(' ')" [ngClass]="{
+      rounded: chipProperties().rounded,
+      disabled: chipProperties().disabled,
+    }" [ngStyle]="chipProperties().customColor ?
+  (chipProperties().variant === 'custom_outline' ? {'border': '1px solid ' + chipProperties().customColor,
+  'color': chipProperties().customColor} :
+   {'background-color': chipProperties().customColor}) : {}" class="mhdd-chips">
+  {{ label() }}
+  @if (chipProperties().close) {
+  <img [src]="chipProperties().close" (click)="handleChipClose(label(), $event)">
+  }
+</div>

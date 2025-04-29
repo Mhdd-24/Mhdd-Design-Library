@@ -1,0 +1,69 @@
+<div class="mhdd-search"
+  [ngClass]="{ 'color-disabled': isDisabled(), 'is-open': isOpen() , 'has-value': inputValue().length > 0  }">
+  <div class="mhdd-search__input">
+    @if (inputValue().length === 0) {
+    <div class="search-icon" (click)="focusSearchInput()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18">
+        <path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm11 4l-6-6" />
+      </svg>
+    </div>
+    }
+
+    <input #searchInputRef type="text" [id]="searchObj().key" [placeholder]="searchObj().placeholder"
+      [disabled]="isDisabled()" autocomplete="off" [value]="inputValue()" (input)="handleSearchChange($event)"
+      (focus)="toggleDropdown()" />
+
+    @if (inputValue().length > 0) {
+    <div class="clear-icon" (click)="handleSearchClear()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14">
+        <path fill="none" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </div>
+    }
+  </div>
+
+  @if (isOpen() && inputValue().length > 0) {
+  <div class="mhdd-search__dropdown">
+    @if (searchResults().length === 0) {
+    <div class="search-category">
+      <p class="no-results">No Results Found</p>
+    </div>
+    } @else{
+    @for (category of searchResults(); track category.category) {
+    <div class="search-category">
+      <h4>{{ category.category }}</h4>
+      @if (category.items.length > 0) {
+      <ul>
+        @for (item of category.items; track item.id) {
+        <li (click)="handleSelectItem(category.category, item)">
+          @if (item.icon) {
+          <img [src]="item.icon" alt="" />
+          }
+          <div class="item-content">
+            <p class="title">{{ item.title }}</p>
+            @if (item.subtitle) {
+            <p class="subtitle">{{ item.subtitle }}</p>
+            }
+          </div>
+        </li>
+        }
+      </ul>
+      } @else {
+      <p class="no-results">No Results Found</p>
+      }
+    </div>
+    }
+    }
+
+  </div>
+  }
+</div>
+
+@if (searchObj().error) {
+<figure class="mhdd-search__error">
+  <img [src]="searchObj().errorIcon" alt="" />
+  <p>{{ searchObj().error }}</p>
+</figure>
+}

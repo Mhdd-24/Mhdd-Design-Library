@@ -1,0 +1,153 @@
+@import '../../../styles/main.scss';
+
+.mhdd-search {
+  @include position(relative);
+  width: 100%;
+  padding-bottom: 2px;
+
+  &__input {
+    padding-bottom: 2px;
+    @include flex(center);
+    @include position(relative);
+    @include bgborder(4px);
+    padding: 0 8px;
+    @include transition(all 0.2s ease);
+    background-color: transparent;
+
+    .search-icon,
+    .clear-icon {
+      @include flex(center, null, center);
+      @include width-height(24px, 24px);
+      @include font(#6b7280);
+      cursor: pointer;
+
+      &:hover {
+        @include font(#4b5563);
+      }
+    }
+
+    input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 10px 8px;
+      @include font(null, 14px);
+      outline: none;
+      width: 100%;
+
+      &::placeholder {
+        @include font(#9ca3af);
+      }
+    }
+  }
+
+  &.has-value .mhdd-search__input {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    background-color: white;
+  }
+
+  &.color-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    input {
+      cursor: not-allowed;
+    }
+
+    .search-icon,
+    .clear-icon {
+      cursor: not-allowed;
+    }
+  }
+
+  &.is-open {
+    .mhdd-search__input {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-bottom-color: transparent;
+    }
+  }
+
+  &__dropdown {
+    @include position(absolute, 100%, null, null, 0);
+    width: 100%;
+    background-color: white;
+    border-top: none;
+    @include bgborder(4px, null, null, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+    z-index: 10;
+    @include minMaxHeight(null, 300px);
+    overflow-y: auto;
+
+    .search-category {
+      padding: 8px 0;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #f3f4f6;
+      }
+
+      h4 {
+        padding: 0 16px;
+        margin: 0;
+        @include font(#6366f1, 12px, null, 500);
+        margin-bottom: 4px;
+      }
+
+      .no-results {
+        padding: 8px 16px;
+        margin: 0;
+        @include font(#9ca3af, 14px);
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          @include flex(center);
+          padding: 8px 16px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #f9fafb;
+          }
+
+          img {
+            @include width-height(24px, 24px);
+            margin-right: 12px;
+          }
+
+          .item-content {
+            flex: 1;
+
+            .title {
+              margin: 0;
+              @include font(#111827, 14px, null, 500);
+            }
+
+            .subtitle {
+              margin: 0;
+              @include font(#6b7280, 12px);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__error {
+    @include flex(center);
+    margin-top: 4px;
+
+    img {
+      @include width-height(16px, 16px);
+      margin-right: 8px;
+    }
+
+    p {
+      margin: 0;
+      @include font(#ef4444, 12px);
+    }
+  }
+}

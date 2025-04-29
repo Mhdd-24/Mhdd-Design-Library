@@ -1,0 +1,19 @@
+<form class="crm-radio-button" [class]="radioObj().direction">
+    @for (item of radioOption(); track $index) {
+
+    <input type="radio" [id]="item.key" [name]="radioObj().name" [value]="item.value"
+        [checked]="activeOption() === item.key">
+
+    <label [for]="item.key" [ngClass]="{'active': activeOption() === item.key, 'rounded': radioObj().rounded}"
+        [class]="radioObj().type" (click)="handleRadioClick(item.key)">
+
+        <span class="circle-container">
+            <span class="circle-fill"></span>
+            <span class="tick"></span>
+        </span>
+
+        {{item.value}}
+
+    </label>
+    }
+</form>

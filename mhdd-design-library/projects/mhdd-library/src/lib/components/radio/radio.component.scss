@@ -1,0 +1,104 @@
+@import "../../../styles/main.scss";
+
+.crm-radio-button {
+    @include flex(center, 15px);
+    transition: transform cubic-bezier(0, 0, 0.30, 2) .4s;
+    transform-style: preserve-3d;
+
+    &.col {
+        @include flex(flex-start, 10px, null, column);
+    }
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    label {
+        @include font(var(--header-color), var(--font-size), 20px, var(--font-weight-regular), center);
+        @include flex(center, 8px, center);
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+
+        &.active {
+            color: var(--primary-color);
+            transform: translateY(-2px);
+            transform: scale(1.10);
+        }
+
+        &.tab {
+            @include bgborder(var(--border-radius), 1px solid var(--secondary-color), var(--card-bg), 0 2px 4px rgba(0, 0, 0, 0.1));
+            padding: 10px;
+            min-width: 80px;
+        }
+
+        &.rounded {
+            border-radius: var(--border-radius-rounded);
+        }
+    }
+
+    label.active .tab .button {
+        border-color: var(--primary-color);
+        box-shadow: 0 4px 8px rgba(74, 144, 226, 0.2);
+    }
+
+    /* Circle container */
+    .circle-container {
+        @include width-height(18px, 18px);
+        @include bgborder(50%, 2px solid var(--secondary-color));
+        @include flex(center, null, center);
+        position: relative;
+        transition: border-color 0.3s ease;
+    }
+
+    label.active .circle-container {
+        border: 1px solid var(--primary-color);
+    }
+
+    /* Circle fill animation */
+    .circle-fill {
+        @include width-height(100%, 100%);
+        @include position(absolute);
+        @include bgborder(50%, null, var(--primary-color));
+        transform: scale(0);
+        transition: transform 0.3s ease;
+    }
+
+    label.active .circle-fill {
+        transform: scale(1);
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Sequenced tick animation */
+    .tick {
+        @include position(absolute);
+        @include width-height(6px, 10px);
+        border-right: 2px solid var(--white-color);
+        border-bottom: 2px solid var(--white-color);
+        transform: rotate(45deg) translate(-1px, -1px) scale(0);
+        opacity: 0;
+        transition: all 0.2s ease;
+    }
+
+    label.active .tick {
+        animation: showTick 0.3s ease forwards;
+        animation-delay: 0.2s;
+    }
+}
+
+@keyframes showTick {
+    0% {
+        transform: rotate(45deg) translate(-1px, -1px) scale(0);
+        opacity: 0;
+    }
+
+    60% {
+        transform: rotate(45deg) translate(-1px, -1px) scale(1.2);
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotate(45deg) translate(-1px, -1px) scale(1);
+        opacity: 1;
+    }
+}

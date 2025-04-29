@@ -7,7 +7,7 @@
       "projectType": "library",
       "root": "projects/mhdd-library",
       "sourceRoot": "projects/mhdd-library/src",
-      "prefix": "lib",
+      "prefix": "mhdd",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

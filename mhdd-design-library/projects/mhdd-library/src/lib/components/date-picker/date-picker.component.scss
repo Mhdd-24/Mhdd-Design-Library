@@ -1,0 +1,45 @@
+@import '../../../styles/main.scss';
+
+.crm-datepicker {
+    position: relative;
+
+    .calender {
+        @include flex(center);
+    }
+
+    .dropdown {
+        li {
+            &.active-year {
+                @include bgborder(var(--border-radius), 1px solid var(--border-dark), var(--card-bg));
+                padding: 10px;
+            }
+
+            span {
+                @include flex(center, 10px, space-between);
+                padding-bottom: 10px;
+
+                img {
+                    @include width-height(18px, 18px);
+                    @include bgborder(var(--border-radius), null, var(--border-color));
+                }
+            }
+        }
+
+        ul {
+            @include flex(center, 10px, space-between, row, wrap);
+            text-align: center;
+
+            li {
+                @include minMaxWidth(50px, 50px);
+                flex-grow: 1;
+                cursor: pointer;
+
+                &.active-month {
+                    @include bgborder(var(--border-radius), null, var(--primary-color));
+                    @include font(var(--white-color));
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}

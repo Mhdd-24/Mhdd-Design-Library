@@ -1,0 +1,172 @@
+@import '../../../styles/main.scss';
+
+
+.popup-overlay {
+    @include position(fixed, 0, null, null, 0);
+    @include width-height(100%, 100%);
+    @include flex(center, null, center);
+    @include bgborder(null, null, var(--overlay-color, rgba(0, 0, 0, 0.5)));
+    z-index: 1000;
+    will-change: opacity, transform;
+
+    &[data-backdrop-blur="true"] {
+        backdrop-filter: blur(4px);
+    }
+
+    &[data-position="center"] {
+        @include flex(center, null, center);
+    }
+
+    &[data-position="top"] {
+        @include flex(flex-start, null, center);
+        padding-top: 2rem;
+    }
+
+    &[data-position="bottom"] {
+        @include flex(flex-end, null, center);
+        padding-bottom: 2rem;
+    }
+
+    &[data-position="left"] {
+        @include flex(center, null, flex-start);
+        padding-left: 2rem;
+    }
+
+    &[data-position="right"] {
+        @include flex(center, null, flex-end);
+        padding-right: 2rem;
+    }
+
+    &[data-position="top-left"] {
+        @include flex(flex-start, null, flex-start);
+        padding: 2rem;
+    }
+
+    &[data-position="top-right"] {
+        @include flex(flex-start, null, flex-end);
+        padding: 2rem;
+    }
+
+    &[data-position="bottom-left"] {
+        @include flex(flex-end, null, flex-start);
+        padding: 2rem;
+    }
+
+    &[data-position="bottom-right"] {
+        @include flex(flex-end, null, flex-end);
+        padding: 2rem;
+    }
+
+    .popup-content {
+        @include bgborder(var(--border-radius), var(--card-box-shadow), var(--card-bg));
+        @include font(var(--heading-color), var(--font-size));
+        padding: 15px;
+        overflow: auto;
+        will-change: transform;
+        min-width: 360px;
+        min-height: 280px;
+    }
+
+    &[data-size="small"] .popup-content {
+        min-width: 360px;
+    }
+
+    &[data-size="medium"] .popup-content {
+        min-width: 800px;
+    }
+
+    &[data-size="large"] .popup-content {
+        min-width: 1140px;
+    }
+
+    &[data-size="full"] .popup-content {
+        min-width: 100%;
+        min-height: 100%;
+    }
+
+    &[data-animation="fade"] {
+        animation: fadeIn 0.2s ease-in-out;
+    }
+
+    &[data-animation="scale"] .popup-content {
+        animation: scaleIn 0.2s ease-in-out;
+    }
+
+    &[data-animation="slide"] {
+        &[data-position="right"] .popup-content {
+            animation: slideInRight 0.2s ease-in-out;
+        }
+
+        &[data-position="left"] .popup-content {
+            animation: slideInLeft 0.2s ease-in-out;
+        }
+
+        &[data-position^="top"] .popup-content {
+            animation: slideInTop 0.2s ease-in-out;
+        }
+
+        &[data-position^="bottom"] .popup-content {
+            animation: slideInBottom 0.2s ease-in-out;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.9);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInTop {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: translateY(100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}

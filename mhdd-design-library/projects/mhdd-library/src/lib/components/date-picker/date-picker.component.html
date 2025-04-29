@@ -1,0 +1,41 @@
+<div class="crm-datepicker" (document:click)="handleOverlayClick($event)">
+    <div class="crm-datepicker__date-box input-box">
+        @if (dateObj().icon) {
+        <img [src]="dateObj().icon" />
+        } @else{
+        <figure class="calender">
+            <crm-svg-icon [svgIconProperties]="svgIconFactory.style(calenderObj)"></crm-svg-icon>
+        </figure>
+        }
+        <label [for]="dateObj().key" [ngClass]="{ 'label-top': selectedDate()}">
+            {{ dateObj().label }}
+            @if (dateObj().mandatory) {
+            <sup>*</sup>
+            }
+        </label>
+        <input [type]="'text'" [id]="dateObj().key" [name]="dateObj().label" [disabled]="disabled()" maxlength="0"
+            [value]="selectedDate()" autocomplete="off" [placeholder]="dateObj().placeholder"
+            (click)="handleDatepicker()" />
+        <!-- <div class="date-input"> {{selectedDate()}}</div> -->
+    </div>
+    @if (showDatepicker()) {
+    <ul class="dropdown">
+        @for (year of dateObj().year; track $index; let i = $index) {
+        <li [ngClass]="{'active-year': year === showYear() && selectedIndex() === $index}">
+            <span (click)="handleYearClick(year, $index)">
+                {{year}}
+                <crm-svg-icon [svgIconProperties]="svgIconFactory.style(downArrowObj)"></crm-svg-icon>
+            </span>
+            @if (selectedIndex() === $index) {
+            <ul>
+                @for (month of dateObj().month; track $index; let j = $index) {
+                <li [ngClass]="{'active-month':  year === selectedYear() && month === seletedMonth()}"
+                    (click)="handleMonthclick(year, month)"> {{month}} </li>
+                }
+            </ul>
+            }
+        </li>
+        }
+    </ul>
+    }
+</div>

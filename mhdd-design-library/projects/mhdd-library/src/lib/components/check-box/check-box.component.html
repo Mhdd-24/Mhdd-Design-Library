@@ -1,0 +1,7 @@
+<div class="mhdd-checkbox">
+    <label (click)="handleCheckbox(label())">
+        <input type="checkbox" [disabled]="disable()" [checked]="checked()" />
+        <span [ngClass]="{disabled:disable()}" class="checkbox-icon"></span>
+    </label>
+    @if (label()) {<p [ngClass]="{disabled:disable()}">{{label()}}</p>}
+</div>

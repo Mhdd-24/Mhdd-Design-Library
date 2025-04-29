@@ -13,5 +13,11 @@
       "esm2022": "./esm2022/mhdd-library.mjs",
       "default": "./fesm2022/mhdd-library.mjs"
     }
-  }
+  },
+  "ngPackage": {
+    "lib": {
+      "entryFile": "public-api.ts"
+    }
+  },
+  "schematics": "./schematics/collection.json"
 }

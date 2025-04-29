@@ -1,0 +1,19 @@
+@import '../../../styles/main.scss';
+
+svg {
+    fill: var(--primary-text-color);
+
+    &.primary {
+        fill: var(--heading-color);
+    }
+
+    &.secondary {
+        fill: var(--primary-color);
+    }
+
+    &.default {
+        fill: var(--icon-color);
+    }
+
+    transition: fill 0.3s ease;
+}

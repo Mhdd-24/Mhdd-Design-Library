@@ -1,0 +1,12 @@
+@if(isOpen()){
+    <div class="popup-overlay" [attr.data-position]="popupProperties().position || 'center'"
+      [attr.data-size]="popupProperties().size || 'small'" [attr.data-animation]="popupProperties().animation || 'fade'"
+      [ngClass]="popupProperties().customClass || ''" [attr.data-backdrop-blur]="popupProperties().backdropBlur || false"
+      [ngStyle]="{
+          '--overlay-color': popupProperties().overlayColor,
+        }" (click)="handleOverlayClick($event)">
+      <div class="popup-content" (click)="$event.stopPropagation()">
+        <ng-content></ng-content>
+      </div>
+    </div>
+    }

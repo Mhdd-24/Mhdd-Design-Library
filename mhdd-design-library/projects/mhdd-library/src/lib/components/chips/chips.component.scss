@@ -1,0 +1,52 @@
+@import '../../../styles/main.scss';
+
+$color-map: (
+        "primary": var(--primary-color),
+        "secondary": var(--secondary-color),
+        "success": var(--success-color),
+        "danger": var(--danger-color),
+        "warning": var(--warning-color),
+        "info": var(--info-color),
+        "light": var(--light-color),
+        "dark": var(--dark-color)
+);
+
+.mhdd-chips {
+  @include width-height(max-content, 24px);
+  @include flex(center, 5px);
+  @include font(var(--white-color), var(--font-size), 12px);
+  position: relative;
+  overflow: hidden;
+  padding: 6px 10px;
+
+  &.disabled {
+    opacity: var(--disbaled-opacity);
+  }
+
+  &.rounded {
+    border-radius: var(--border-radius-rounded);
+  }
+
+  img {
+    @include width-height(16px, 16px);
+  }
+
+  @each $color-name, $color-value in $color-map {
+    &.filled.#{$color-name} {
+      @include bgborder(var(--border-radius), transparent);
+      background: $color-value;
+      color: var(--white-color);
+    }
+
+    &.outline.#{$color-name} {
+      @include bgborder(var(--border-radius), null, transparent);
+      border: 1px solid $color-value;
+      color: $color-value;
+    }
+
+    &.ghost.#{$color-name} {
+      @include bgborder(var(--border-radius), transparent, transparent);
+      color: $color-value;
+    }
+  }
+}
