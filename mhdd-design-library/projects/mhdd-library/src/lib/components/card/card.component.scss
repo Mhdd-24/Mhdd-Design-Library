@@ -1,0 +1,7 @@
+@import '../../../styles/main.scss';
+
+.mhdd-card {
+    @include bgborder(12px, null, var(--card-bg), var(--card-box-shadow));
+    @include font(var(--heading-color), var(--font-size));
+    padding: 20px;
+}

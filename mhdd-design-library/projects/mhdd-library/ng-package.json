@@ -3,5 +3,8 @@
   "dest": "../../dist/mhdd-library",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "assets": [
+    "src/assets"
+  ]
 }

@@ -1,0 +1,11 @@
+<button class="mhdd-button" (click)="handleButtonClick(label())" type="button" [class]="[buttonProperties().size, buttonProperties().variant, 
+    buttonProperties().iconPosition, buttonProperties().styles].join(' ')" [ngClass]="{
+      rounded: buttonProperties().rounded,
+      disabled: buttonProperties().disabled,
+    }" [ngStyle]="buttonProperties().customColor ? 
+  (buttonProperties().variant === 'custom_outline' ? {'border': '1px solid ' + buttonProperties().customColor, 
+  'color': buttonProperties().customColor} : 
+   buttonProperties().variant === 'ghost' ? {'color': buttonProperties().customColor} : 
+   {'background-color': buttonProperties().customColor}) : {}">
+    @if (icon()) { <img [src]="icon()" alt="" /> } {{ label() }}
+</button>

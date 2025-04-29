@@ -1,0 +1,70 @@
+@import '../../../styles/main.scss';
+
+$color-map: (
+    "primary": var(--primary-color),
+    "secondary": var(--secondary-color),
+    "success": var(--success-color),
+    "danger": var(--danger-color),
+    "warning": var(--warning-color),
+    "info": var(--info-color),
+    "light": var(--light-color),
+    "dark": var(--dark-color)
+);
+
+.mhdd-button {
+    @include width-height(100%, 40px);
+    position: relative;
+    overflow: hidden;
+    padding: 8px;
+
+    &.small {
+        width: 100px;
+    }
+
+    &.medium {
+        width: 130px;
+    }
+
+    &.half {
+        width: 50%;
+    }
+
+    &.left {
+        @include flex(center, 10px, center);
+    }
+
+    &.right {
+        @include flex(center, 10px, center, row-reverse);
+    }
+
+    &.disabled {
+        opacity: var(--disbaled-opacity);
+    }
+
+    &.rounded {
+        @include bgborder(var(--border-radius-rounded), none, var(--card-bg));
+    }
+
+    img {
+        @include width-height(20px, 20px);
+    }
+
+    @each $color-name, $color-value in $color-map {
+        &.filled.#{$color-name} {
+            @include bgborder(var(--border-radius), transparent);
+            background: $color-value;
+            color: var(--white-color);
+        }
+
+        &.outline.#{$color-name} {
+            @include bgborder(var(--border-radius), null, transparent);
+            border: 1px solid $color-value;
+            color: $color-value;
+        }
+
+        &.ghost.#{$color-name} {
+            @include bgborder(var(--border-radius), transparent, transparent);
+            color: $color-value;
+        }
+    }
+}

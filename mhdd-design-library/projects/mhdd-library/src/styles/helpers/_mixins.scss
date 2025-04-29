@@ -1,0 +1,117 @@
+@mixin clearfix() {
+  &::after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+@mixin width-height($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin position($position, $top: null, $right: null, $bottom: null, $left: null) {
+  position: $position;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin flex($align-items: null, $gap: null, $justify-content: null, $direction: null, $flex-wrap: null, $flex-grow: null, $flex-shrink: null, $align-self: null) {
+  display: flex;
+  align-items: $align-items;
+  gap: $gap;
+  justify-content: $justify-content;
+  flex-direction: $direction;
+  flex-wrap: $flex-wrap;
+  flex-grow: $flex-grow;
+  flex-shrink: $flex-shrink;
+  align-self: $align-self;
+}
+
+@mixin flexWidth($width) {
+  flex: 0 0 $width;
+  max-width: $width;
+}
+
+@mixin font($color: null, $font-size: null, $line-height: null, $font-weight: null, $text-align: null, $letter-spacing: null, $font-family: null, ) {
+  color: $color;
+  font-size: $font-size;
+  line-height: $line-height;
+  font-weight: $font-weight;
+  text-align: $text-align;
+  letter-spacing: $letter-spacing;
+  font-family: $font-family;
+}
+
+@mixin background-img($background-size: null, $background-repeat: null) {
+  background-size: $background-size;
+  background-repeat: $background-repeat;
+}
+
+@mixin bgborder($border-radius: null, $border: null, $background: null, $box-shadow: null) {
+  border-radius: $border-radius;
+  border: $border;
+  background: $background;
+  box-shadow: $box-shadow;
+}
+
+@mixin trimText($overflow: hidden, $white-space: nowrap, $text-overflow: ellipsis) {
+  overflow: $overflow;
+  white-space: $white-space;
+  text-overflow: $text-overflow;
+}
+
+@mixin minMaxWidth($min-width: null, $max-width: null) {
+  min-width: $min-width;
+  max-width: $max-width;
+}
+
+@mixin minMaxHeight($min-height: null, $max-height: null) {
+  min-height: $min-height;
+  max-height: $max-height;
+}
+
+@mixin animation($animation-type: null) {
+  animation: $animation-type;
+}
+
+@mixin transition($value) {
+  -webkit-transition: $value ;
+  -moz-transition: $value ;
+  transition: $value ;
+}
+
+@mixin delay($delay) {
+  -webkit-animation-delay: $delay;
+  -moz-animation-delay: $delay;
+  animation-delay: $delay;
+}
+
+@mixin backgroundImage($background-image: null, $background-repeat: no-repeat, $background-size: contain, $background-position: center) {
+  background-image: url($background-image);
+  background-repeat: $background-repeat;
+  background-size: $background-size;
+  background-position: $background-position;
+}
+
+@keyframes grow-animation {
+  from {
+    transform: scale(.8);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+// Position mixin
+@mixin generate-position-classes($positions) {
+  @each $position, $direction in $positions {
+    &.#{$position} {
+      @include flex(center, 10px, center, $direction);
+    }
+  }
+}

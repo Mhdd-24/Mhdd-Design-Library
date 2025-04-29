@@ -1,0 +1,48 @@
+@import "../helpers/mixins";
+
+.wrapper {
+  overflow: hidden;
+
+  &__container {    
+    padding-top: 50px;
+    min-height: calc(100vh - 112px);
+
+    &.left-in,
+    &.right-in {
+      overflow: hidden;
+      transition: overflow 0.5s ease-in-out;
+    }
+
+    &.left-in {
+      animation: slide-from-left .5s ease-in-out;
+    }
+
+    &.right-in {
+      animation: slide-from-right .5s ease-in-out;
+    }
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

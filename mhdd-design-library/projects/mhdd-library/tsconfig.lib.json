@@ -4,12 +4,40 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
+    "target": "es2015",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": []
+    "types": [],
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@core/*": [
+        "src/app/core/*"
+      ],
+      "@assets/*": [
+        "src/assets/*"
+      ],
+      "@styles/*": [
+        "src/styles/*"
+      ],
+      "mhdd-library/*": [
+        "dist/mhdd-library/*"
+      ]
+    }
   },
-  "exclude": [
-    "**/*.spec.ts"
+  "angularCompilerOptions": {
+    "annotateForClosureCompiler": true,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  },
+  "include": [
+    "src/**/*.ts"
   ]
 }
+
