@@ -1,6 +1,6 @@
 @import "../../../styles/main.scss";
 
-.crm-radio-button {
+.mhdd-radio-button {
     @include flex(center, 15px);
     transition: transform cubic-bezier(0, 0, 0.30, 2) .4s;
     transform-style: preserve-3d;

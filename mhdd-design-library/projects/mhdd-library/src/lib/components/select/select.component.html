@@ -1,0 +1,62 @@
+<div [ngClass]="selectProperties().customClass" class="mhdd-select">
+    <div (click)="toggleDropdown()"
+         [ngClass]="{
+         'open': isOpen(),
+         'disabled': isDisabled(),
+         'compact': selectProperties().variant === 'compact',
+         'large': selectProperties().variant === 'large'
+       }" class="mhdd-select__select-header">
+        <label [ngStyle]="{color: isOpen() ? 'var(--primary-color)' : 'var(--heading-color)'}">
+            {{ selectProperties().multiple ? 'Multi-Select' : 'Select' }}
+            {{ selectProperties().enableSearch ? ' with Search' : '' }}
+        </label>
+        <div class="selected-values">
+            @if (!selectProperties().multiple && selectedValues().length) {
+                <div class="single-tag">
+                    {{ selectedValues()[0].label }}
+                    <span class="remove-tag" (click)="removeValue(selectedValues()[0], $event)">×</span>
+                </div>
+            } @else {
+                @for (option of selectedValues(); track option.value) {
+                    <div class="multi-tag">
+                        {{ option.label }}
+                        <span class="remove-tag" (click)="removeValue(option, $event)">×</span>
+                    </div>
+                }
+            }
+            @if (selectedValues().length === 0) {
+                <div class="placeholder">
+                    {{ selectProperties().placeholder }}
+                </div>
+            }
+        </div>
+        <span [ngClass]="{'arrow-up': isOpen(), 'arrow-down': !isOpen()}"></span>
+    </div>
+    @if (isOpen()) {
+        <div class="mhdd-select__dropdown-container" [style.max-height]="selectProperties().maxHeight">
+            @if (selectProperties().enableSearch) {
+                <div class="search-container">
+                    <input type="text"
+                           [formControl]="searchControl()"
+                           (click)="$event.stopPropagation()"
+                           placeholder="Search..."
+                           #searchInput>
+                </div>
+            }
+            <div class="options-list">
+                @for (option of filteredOptions(); track option.value) {
+                    <div class="option"
+                         [class.selected]="isSelected(option.value)"
+                         (click)="selectOption(option, $event)">
+                        {{ option.label }}
+                    </div>
+                }
+                @if (filteredOptions().length === 0) {
+                    <div class="no-options">
+                        {{ noOptions() }}
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

@@ -1,10 +1,10 @@
-<div class="crm-datepicker" (document:click)="handleOverlayClick($event)">
-    <div class="crm-datepicker__date-box input-box">
+<div class="mhdd-datepicker" (document:click)="handleOverlayClick($event)">
+    <div class="mhdd-datepicker__date-box input-box">
         @if (dateObj().icon) {
         <img [src]="dateObj().icon" />
         } @else{
         <figure class="calender">
-            <crm-svg-icon [svgIconProperties]="svgIconFactory.style(calenderObj)"></crm-svg-icon>
+            <mhdd-svg-icon [svgIconProperties]="svgIconFactory.style(calenderObj)"></mhdd-svg-icon>
         </figure>
         }
         <label [for]="dateObj().key" [ngClass]="{ 'label-top': selectedDate()}">
@@ -24,7 +24,7 @@
         <li [ngClass]="{'active-year': year === showYear() && selectedIndex() === $index}">
             <span (click)="handleYearClick(year, $index)">
                 {{year}}
-                <crm-svg-icon [svgIconProperties]="svgIconFactory.style(downArrowObj)"></crm-svg-icon>
+                <mhdd-svg-icon [svgIconProperties]="svgIconFactory.style(downArrowObj)"></mhdd-svg-icon>
             </span>
             @if (selectedIndex() === $index) {
             <ul>

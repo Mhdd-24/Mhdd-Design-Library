@@ -1,0 +1,23 @@
+<ul class="mhdd-tab" [ngClass]="[
+      tabProperties().type
+    ]" [ngStyle]="{
+  'width': tabProperties().width ?? null,
+  'height': tabProperties().height ?? null,
+  }">
+  @for (item of tabList(); track $index) {
+  <li [ngClass]="{
+        'active': activeTab() === item.key,
+        'rounded': tabProperties().rounded,
+        'disabled': tabProperties().disabled
+      }" (click)="!tabProperties().disabled && handleTabClick(item.key)"
+    [@tabTouch]="activeTab() === item.key ? 'active' : 'inactive'">
+    @if (item.icon && tabProperties().iconPosition === 'left') {
+    <img [src]="item.icon" alt="" />
+    }
+    {{item.value}}
+    @if (item.icon && tabProperties().iconPosition === 'right') {
+    <img [src]="item.icon" alt="" />
+    }
+  </li>
+  }
+</ul>

@@ -1,0 +1,78 @@
+@import "../../../styles/main.scss";
+
+.mhdd-tab {
+    @include bgborder(var(--border-radius), 1px solid var(--border-dark));
+    @include flex(center, null, null, row);
+    width: max-content;
+    height: max-content;
+    overflow: hidden;
+
+    li {
+        @include font(var(--heading-color));
+        @include bgborder(null, null, var(--card-bg));
+        @include flex(center, 10px, center);
+        flex: 1;
+        padding: 10px 12px;
+        cursor: pointer;
+        min-width: 100px;
+        height: 100%;
+        transition: all 0.2s ease;
+        border-right: 1px solid var(--border-dark);
+
+        &:last-child {
+            border-right: none;
+        }
+
+        &.disabled {
+            opacity: var(--disbaled-opacity);
+            cursor: not-allowed;
+        }
+
+        &.active {
+            @include font(var(--heading-color), var(--font-size), null, var(--font-weight-bolder));
+            @include bgborder(null, null, var(--primary-color));
+        }
+
+        img {
+            @include width-height(20px, 20px);
+        }
+    }
+
+    &.pill {
+        @include bgborder(null, none, transparent);
+
+        li {
+            margin: 0 5px;
+            border: none;
+            @include bgborder(20px, 1px solid var(--border-color), var(--card-bg));
+            border-radius: 20px;
+
+            &.active {
+                @include bgborder(20px, none, var(--primary-color));
+            }
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &.underline {
+        @include bgborder(null, none, transparent);
+
+        li {
+            border: none;
+            border-bottom: 2px solid transparent;
+
+            &.active {
+                @include font(var(--heading-color), var(--font-size), null, var(--font-weight-bolder));
+                @include bgborder(null, null, transparent);
+                border-bottom: 2px solid var(--primary-color);
+            }
+        }
+    }
+}
