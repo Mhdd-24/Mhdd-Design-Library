@@ -241,8 +241,8 @@ export const TabObj = {
 };
 
 export const tabs = [
-    { key: 'BFL', value: 'BFL' },
-    { key: 'Non BFL', value: 'Non BFL' },
+    { key: 'Yes', value: 'Yes' },
+    { key: 'No', value: 'No' },
 ];
 
 
