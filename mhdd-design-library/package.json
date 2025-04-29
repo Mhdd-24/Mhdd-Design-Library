@@ -6,7 +6,13 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "docs:generate": "compodoc -p tsconfig.doc.json",
+    "docs:serve": "compodoc -p tsconfig.doc.json -s",
+    "build:lib": "ng build mhdd-library",
+    "publish:lib": "cd dist/mhdd-library && npm publish",
+    "test:lib": "ng test mhdd-library --code-coverage",
+    "lint:lib": "ng lint mhdd-library"
   },
   "private": true,
   "dependencies": {
