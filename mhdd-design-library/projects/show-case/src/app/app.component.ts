@@ -1,7 +1,7 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, signal } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SearchFactory, SearchProperties, SearchResult } from 'projects/mhdd-library/src/lib/components/search-bar/search-bar.factory';
-import { SelectFactory, ButtonFactory, TextboxFactory, RadioFactory, DatepickerFactory, ChipsFactory, PopupFactory, searchList, TableSettings, PaginationItem, ButtonComponent, CardComponent, TableComponent, RadioComponent, ChipsComponent, SelectComponent, TabComponent, PopUpComponent, DatePickerComponent, TextBoxComponent, CheckBoxComponent, expandCollapseStaticHeightAnimation } from 'projects/mhdd-library/src/public-api';
+import { SelectFactory, ButtonFactory, TextboxFactory, RadioFactory, DatepickerFactory, ChipsFactory, PopupFactory, searchList, TableSettings, PaginationItem, ButtonComponent, CardComponent, TableComponent, RadioComponent, ChipsComponent, TabComponent, PopUpComponent, DatePickerComponent, TextBoxComponent, CheckBoxComponent, expandCollapseStaticHeightAnimation } from 'projects/mhdd-library/src/public-api';
 import { countries, dateData, chipConfig, chipWithIconConfig, filledButtonConfig, outlineButtonConfigOne, outlineButtonIconConfigOne, emailTextbox, passwordTextbox, numericTextbox, dateTextbox, originalProjects, radioData, radioDataTab, TabProps, tabs, modalPopupConfig, sidebarPopupConfig, toastPopupConfig, tableConfig, headers, tableData } from '../core/constants/configs/data';
 import { ThemeType, themeList, darkTheme, lightTheme } from '../core/constants/theme';
 import { ThemeService } from '../core/service/theme.service';
@@ -11,7 +11,7 @@ import { SearchBarComponent } from 'projects/mhdd-library/src/lib/components/sea
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [ButtonComponent, CardComponent, TableComponent, TextBoxComponent, RadioComponent, ChipsComponent, CheckBoxComponent, SelectComponent, SearchBarComponent, TabComponent, DatePickerComponent, PopUpComponent],
+  imports: [ButtonComponent, CardComponent, TableComponent, TextBoxComponent, RadioComponent, ChipsComponent, CheckBoxComponent, SearchBarComponent, TabComponent, DatePickerComponent, PopUpComponent],
   standalone: true,
   animations: [expandCollapseStaticHeightAnimation],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
