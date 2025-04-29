@@ -61,7 +61,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "projects/show-case/public"
+                "input": "./projects/mhdd-library/src/assets/",
+                "output": "/assets/"
               }
             ],
             "styles": [
@@ -130,6 +131,12 @@
           }
         }
       }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "style": "scss",
+      "standalone": true
     }
   },
   "cli": {
