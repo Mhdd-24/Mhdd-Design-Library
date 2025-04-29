@@ -1,12 +1,12 @@
 // chip types and interfaces
-export interface SampleProperties {
-  variant: 'filled' | 'tonal' | 'custom_outline' | 'ghost' | '';
-  styles: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'dark' | '';
-  rounded?: boolean;
-  disabled?: boolean;
-  close?: boolean;
-  customColor?: string;
-}
+// export interface SampleProperties {
+//   variant: 'filled' | 'tonal' | 'custom_outline' | 'ghost' | '';
+//   styles: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'dark' | '';
+//   rounded?: boolean;
+//   disabled?: boolean;
+//   close?: boolean;
+//   customColor?: string;
+// }
 
 export interface ChipProperties {
     variant: string;

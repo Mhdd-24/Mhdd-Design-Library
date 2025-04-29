@@ -1,0 +1,246 @@
+@import '../../../styles/main.scss';
+
+.mhdd-table {
+  @include bgborder(var(--border-radius), null, var(--card-bg), 0 4px 14px 0 var(--dark-blue-color));
+  @include font(var(--heading-color), var(--font-size), 18px, var(--font-weight-regular));
+  @include flex(null, 14px, null, column);
+  width: 100%;
+  padding: 10px;
+
+  .table-title {
+    @include flex(center, null, space-between);
+  }
+
+  .mhdd-table-header {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    th {
+      @include font(var(--heading-color), var(--font-size), 18px, var(--font-weight-regular), center);
+      @include bgborder(null, 0.5px solid var(--border-color), var(--table-header-bg));
+      padding: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+    }
+
+    td {
+      @include font(var(--heading-color), var(--font-size), 18px, var(--font-weight-regular), center);
+      @include bgborder(null, 0.5px solid var(--border-color), var(--card-bg));
+      padding: 6px;
+      letter-spacing: 0.5px;
+      vertical-align: middle;
+
+      .text-container {
+        @include flex(center);
+        width: 100%;
+
+        span {
+          @include font(var(--heading-color), var(--font-size), 18px, var(--font-weight-regular), left);
+        }
+      }
+
+      .img-text {
+        @include flex(center, 10px);
+        width: 100%;
+
+        .project-img {
+          @include width-height(30px, 30px);
+          @include bgborder(50px, 1px solid var(--primary-color));
+        }
+
+        span {
+          @include font(var(--heading-color), var(--font-size), 18px, var(--font-weight-regular), left);
+        }
+      }
+
+      .anchor-text {
+        @include font(var(--primary-color), var(--font-size), 18px, var(--font-weight-regular), left);
+        @include flex(center);
+        cursor: pointer;
+        height: 100%;
+      }
+
+      .chip-container {
+        @include flex(center, 10px);
+        width: 100%;
+
+        .chip {
+          @include bgborder(var(--border-radius), null, #e8e9ed);
+          @include flex(center);
+          @include font(#6d788d, calc(var(--font-size) - 2px), 18px, var(--font-weight-regular), left);
+          width: max-content;
+          padding: 10px;
+          height: 20px;
+        }
+      }
+
+      .inline-actions {
+        @include flex(center, null, space-evenly);
+        width: 100%;
+
+        .action-button {
+          img {
+            @include width-height(18px, 18px);
+          }
+        }
+      }
+
+      .dropdown-table {
+        @include flex(center, null, flex-end);
+        width: 100%;
+        position: relative;
+
+        .dropdown-button {
+          @include bgborder(null, none, var(--card-bg));
+          @include flex(center, null, center);
+          @include position(relative);
+
+          img {
+            @include width-height(18px, 18px);
+          }
+
+          .dropdown-menu {
+            @include bgborder(10px, null, var(--card-bg), 0 4px 14px 0 var(--dark-blue-color));
+            @include position(absolute, 11px, 13px);
+            padding: 10px;
+            z-index: 10;
+            min-width: 160px;
+            min-height: 100px;
+
+            li {
+              @include flex(center, 8px);
+              @include font(var(--heading-color), var(--font-size), 14px, var(--font-weight-regular));
+              padding: 10px 0;
+
+              img {
+                @include width-height(18px, 18px);
+              }
+            }
+          }
+        }
+
+
+      }
+    }
+  }
+
+  .pagination-container {
+    @include flex(center, null, space-between);
+    margin-top: 16px;
+    flex-wrap: wrap;
+
+    .entries-info {
+      @include font(var(--heading-color), 14px, 18px, var(--font-weight-regular));
+      margin: 8px 0;
+    }
+
+    .pagination {
+      @include flex(center, 6px);
+
+      .page-btn {
+        @include width-height(36px, 36px);
+        @include bgborder(50%, 1px solid var(--border-color), var(--card-bg));
+        @include flex(center, null, center);
+        @include font(var(--heading-color), 14px, 18px, var(--font-weight-regular));
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+          background: var(--indigo-color);
+          color: var(--primary-color);
+          transform: translateY(-2px);
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+          transform: translateY(0);
+          box-shadow: none;
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          transform: none;
+          box-shadow: none;
+        }
+
+        &.active {
+          @include bgborder(null, 1px solid var(--primary-color), var(--primary-color));
+          @include font(var(--white-color));
+          transform: scale(1.05);
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        &.number {
+          transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+          &:hover {
+            transform: scale(1.1);
+          }
+
+          &:active {
+            transform: scale(0.95);
+          }
+
+          &.active {
+            transform: scale(1.1);
+          }
+        }
+
+        &.first,
+        &.prev,
+        &.next,
+        &.last {
+          @include flex(center);
+          padding: 12px 0px 0px 8px;
+
+          &:hover img {
+            transform: scale(1.2);
+          }
+
+          &:active img {
+            transform: scale(0.9);
+          }
+        }
+
+        &.prev:hover img,
+        &.first:hover img {
+          transform: translateX(-2px) scale(1.2);
+        }
+
+        &.next:hover img,
+        &.last:hover img {
+          transform: translateX(2px) scale(1.2);
+        }
+      }
+
+      img {
+        @include width-height(12px, 12px);
+      }
+
+    }
+
+    .ellipsis {
+      @include flex(center);
+      margin: 0 4px;
+      align-self: center;
+      animation: fadeInOut 2s infinite;
+    }
+  }
+}
+
+@keyframes fadeInOut {
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}

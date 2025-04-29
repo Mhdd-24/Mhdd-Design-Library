@@ -1,0 +1,60 @@
+.mhdd-demo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .theme-switch {
+        width: 7%;
+        height: 40px;
+    }
+
+    .button {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .textbox {
+        margin-top: 20px;
+    }
+
+    .textarea {
+        margin-top: 20px;
+    }
+
+    .search-round {
+        margin-top: 20px;
+    }
+
+    .search {
+        margin-top: 20px;
+    }
+
+    .table-actions-button {
+        display: flex;
+        gap: 20px;
+    }
+
+    .select-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .chip {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .mhdd-card {
+        margin-bottom: 20px;
+    }
+
+    .popup-button {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .popup-button:has(mhdd-button) {
+        font-size: 12px;
+    }
+}

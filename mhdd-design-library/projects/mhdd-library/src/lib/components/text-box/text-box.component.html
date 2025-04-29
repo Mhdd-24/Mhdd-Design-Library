@@ -1,0 +1,58 @@
+<div class="mhdd-textbox input-box" [ngClass]="{ 'disabled': disabled(), 'textarea': texboxObj().type === 'textarea', 
+'rounded': texboxObj().rounded}">
+
+    <div class="mhdd-textbox__label">
+        @if (texboxObj().icon) {
+        <img [src]="texboxObj().icon" />
+        } @else if (texboxObj().type === 'search') {
+        <figure class="search">
+            <mhdd-svg-icon [svgIconProperties]="svgIconFactory.style(searchIconObj)"></mhdd-svg-icon>
+        </figure>
+        }
+
+        <label [for]="texboxObj().key" [ngClass]="{ 'label-top': inputValue()}">
+            {{ texboxObj().label }}
+
+            @if (texboxObj().mandatory) {
+            <sup>*</sup>
+            }
+        </label>
+    </div>
+
+    @if (texboxObj().type === 'textarea') {
+    <textarea [id]="texboxObj().key" [name]="texboxObj().label" [disabled]="disabled()"
+        [placeholder]="internalPlaceholder()" autocomplete="off" [value]="inputValue()"
+        (input)="handleTextChange($event, texboxObj().key)" (focus)="handleFocus()" (blur)="handleBlur()">
+        </textarea>
+    } @else {
+    <input [id]="texboxObj().key" [name]="texboxObj().label" [disabled]="disabled()" [pattern]="texboxObj().pattern"
+        [value]="inputValue()" [attr.pattern]="texboxObj().pattern || null" [maxLength]="texboxObj().maxLength"
+        [minLength]="texboxObj().minLength" autocomplete="off" (input)="handleTextChange($event, texboxObj().key)"
+        [placeholder]="internalPlaceholder()" (focus)="handleFocus()" (blur)="handleBlur()" />
+
+    @if (texboxObj().type === 'search' && inputValue()) {
+    <button type="button" class="clear-button" (click)="clearInput()">
+        <span>×</span>
+    </button>
+    }
+
+    @if (texboxObj().type === 'search' && isDropdownActive()) {
+    <ul>
+        @if (filteredResults().length) {
+        @for (item of filteredResults(); track $index) {
+        <li (click)="handleItemSelection(item)">{{ item.value }}</li>
+        }
+        } @else {
+        <p>No Record Found!</p>
+        }
+    </ul>
+    }
+    }
+</div>
+
+@if (error()) {
+<figure class="mhdd-textbox__error">
+    <img [src]="texboxObj().errorIcon" alt="" />
+    <p>{{ error() }}</p>
+</figure>
+}

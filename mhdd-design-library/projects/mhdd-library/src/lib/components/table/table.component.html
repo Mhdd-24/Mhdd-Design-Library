@@ -1,0 +1,117 @@
+<div class="mhdd-table">
+    <div class="table-title">
+        <h2>{{ tableConfig().title }}</h2>
+        <ng-content select="[table-actions]"></ng-content>
+    </div>
+    <table class="mhdd-table-header">
+        <thead>
+            <tr>
+                @for (header of headers(); track header) {
+                <th>{{ header.value }}</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (row of pagedData(); track row) {
+            <tr>
+                @for (header of headers(); track header) {
+                <td>
+                    @switch (header.type) {
+                    @case ('text') {
+                    <span>{{ getCellValue(row, header.key) }}</span>
+                    }
+                    @case ('date') {
+                    <span>{{ getCellValue(row, header.key) | dateFormat }}</span>
+                    }
+                    @case ('imageWithText') {
+                    @if (row[header.key]?.image) {
+                    <div class="img-text">
+                        <img [src]="getImage(row, header.key)" class="project-img" />
+                        <span>{{ row[header.key]?.value }}</span>
+                    </div>
+                    }
+                    }
+                    @case ('clickableText') {
+                    <p (click)="onTextClick(row)" class="anchor-text">
+                        {{ row[header.key] }}
+                    </p>
+                    }
+                    @case ('chips') {
+                    <div class="chip-container">
+                        @for (chip of row[header.key] || []; track chip) {
+                        <span class="chip" [ngStyle]="{ 'background-color': chip.background, 'color': chip.color }">
+                            {{ chip.text }}
+                        </span>
+                        }
+                    </div>
+                    }
+                    @case ('inlineActionBtn') {
+                    <div class="inline-actions">
+                        @for (action of row[header.key] || []; track action) {
+                        <figure class="action-button" (click)="onActionClick(row, action.text)">
+                            <img [src]="action.icon" />
+                        </figure>
+                        }
+                    </div>
+                    }
+                    @case ('dropdownActionBtn') {
+                    <div class="dropdown-table">
+                        <button (click)="toggleDropdown(row.id)" class="dropdown-button">
+                            <img [src]="row[header.key]?.icon" />
+                            @if (dropdownOpenId === row.id) {
+                            <ul class="dropdown-menu">
+                                @for (option of row[header.key]?.options || []; track option) {
+                                <li (click)="onOptionClick(row, option.text)">
+                                    <img [src]="option.icon" /> {{ option.text }}
+                                </li>
+                                }
+                            </ul>
+                            }
+                        </button>
+                    </div>
+                    }
+                    @default {
+                    <span>{{ row[header.key]?.value }}</span>
+                    }
+                    }
+                </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+    @if (tableConfig().showPagination) {
+    <div class="pagination-container">
+        <div class="entries-info">
+            Showing {{ ((tableConfig().currentPage - 1) * (tableConfig().itemsPerPage || 10)) + 1 }} to
+            {{ math().min(tableConfig().currentPage * (tableConfig().itemsPerPage || 10), totalItems()) }}
+            of {{ totalItems() }} entries
+        </div>
+        <div class="pagination">
+            <button class="page-btn first" [disabled]="tableConfig().currentPage === 1" (click)="goToPage(1)">
+                <mhdd-svg-icon [svgIconProperties]="svgIconFactory.style(backWardLeftObj)"></mhdd-svg-icon>
+            </button>
+            <button class="page-btn prev" [disabled]="tableConfig().currentPage === 1" (click)="prevPage()">
+                <mhdd-svg-icon [svgIconProperties]="svgIconFactory.style(pervObj)"></mhdd-svg-icon>
+            </button>
+            @for (item of displayedPages(); track item) {
+            @if (item.type === 'number') {
+            <button class="page-btn number" [class.active]="item.value === tableConfig().currentPage"
+                (click)="goToPage(item.value)">
+                {{ item.value }}
+            </button>
+            } @else {
+            <span class="ellipsis">...</span>
+            }
+            }
+            <button class="page-btn next" [disabled]="tableConfig().currentPage === totalPages()" (click)="nextPage()">
+                <mhdd-svg-icon [svgIconProperties]="svgIconFactory.style(nextObj)"></mhdd-svg-icon>
+            </button>
+            <button class="page-btn last" [disabled]="tableConfig().currentPage === totalPages()"
+                (click)="goToPage(totalPages())">
+                <mhdd-svg-icon [svgIconProperties]="svgIconFactory.style(fastForwardObj)"></mhdd-svg-icon>
+            </button>
+        </div>
+    </div>
+    }
+</div>

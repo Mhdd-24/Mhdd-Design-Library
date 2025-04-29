@@ -1,0 +1,146 @@
+@import '../../../styles/main.scss';
+
+.mhdd-textbox {
+
+  &.textarea {
+    @include width-height(100%, 100px);
+    align-items: flex-start;
+
+    img {
+      top: 22px;
+    }
+
+    textarea {
+      @include font(var(--primary-text-color));
+      padding-left: 24px;
+    }
+  }
+
+  &.disabled {
+    opacity: var(--disbaled-opacity);
+  }
+
+  &.rounded {
+    border-radius: var(--border-radius-rounded);
+  }
+
+  &__label {
+    @include flex(center, 8px);
+
+    label {
+      @include position(absolute, 11px, null, null, 45px);
+      @include font(var(--light-text-color), var(--font-size));
+      @include bgborder(null, null, transparent);
+      @include width-height(50%, 25px);
+      transition: top 0.3s ease-in-out;
+
+      sup {
+        color: var(--danger-color);
+      }
+
+      &.label-top {
+        @include position(absolute, -11px, null, null, 30px);
+        @include bgborder(null, null, var(--card-bg));
+        @include font(var(--primary-color), var(--font-size));
+        @include width-height(fit-content, fit-content);
+        padding: 0 3px;
+      }
+
+      .search {
+        @include flex(center);
+      }
+    }
+
+    img {
+      @include width-height(18px, 18px);
+      @include position(absolute, 19px, null, null, 10px);
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+  }
+
+  input {
+    @include font(var(--primary-text-color));
+    border: none;
+    outline: none;
+    width: 100%;
+    padding-left: 24px;
+    padding-right: 30px;
+
+    &::placeholder {
+      @include font(var(--light-text-color));
+      padding-left: 0px;
+    }
+
+    ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+    ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+    ::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+      color: transparent;
+    }
+  }
+
+  .clear-button {
+    @include position(absolute, 50%, 10px, null, null);
+    @include bgborder(var(--border-radius-rounded), none, var(--border-color));
+    @include width-height(20px, 20px);
+    @include flex(null, null, center);
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+
+    span {
+      @include font(var(--border-dark), calc(--var(--font-size) + 2px));
+    }
+
+    &:hover {
+      @include bgborder(none, none, var(--border-color));
+
+      span {
+        @include font(var(--danger-color));
+      }
+    }
+  }
+
+  &:focus-within {
+    border: 2px solid #666cff;
+
+    label {
+      @extend .label-top;
+    }
+  }
+
+  ul {
+    @include bgborder(var(--border-radius), transparent, var(--card-bg), var(--card-box-shadow));
+    width: 100%;
+    max-height: 150px;
+    padding-left: 10px;
+    @include position(absolute, 40px, null, null, 0);
+    overflow-y: auto;
+    z-index: 100;
+
+    li {
+      @include font(var(--primary-text-colorr), var(--font-size));
+      padding: 8px 0;
+      cursor: pointer;
+
+      &:hover {
+        @include bgborder(null, null, var(--primary-color));
+        @include font(var(--white-color));
+      }
+    }
+
+    p {
+      @include font(var(--danger-color), var(--font-size), 20px, var(--font-weight-regular), center);
+    }
+  }
+
+  &__error {
+    @include flex(center, 3px);
+    padding-top: 2px;
+
+    p {
+      @include font(var(--danger-color), var(--font-size), 20px, var(--font-weight-regular));
+      min-height: 18px;
+    }
+  }
+}
